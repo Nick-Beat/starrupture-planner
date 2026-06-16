@@ -16,7 +16,7 @@
   "author": "flexsurfer",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "deploy": "gh-pages -d dist",
     "images:webp": "./scripts/generate-webp.sh",

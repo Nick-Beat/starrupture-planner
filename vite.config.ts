@@ -2,10 +2,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { filePersistPlugin } from './vite-plugins/file-persist-plugin'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), filePersistPlugin()],
   publicDir: 'assets',
+  server: {
+      watch: {
+        ignored: ['**/data/**'] ,
+      },
+    },
   build: {
     rollupOptions: {
       output: {

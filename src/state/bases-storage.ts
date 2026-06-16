@@ -15,19 +15,59 @@ export interface BasesStorageEnvelope {
 }
 
 function isBasesStorageEnvelope(value: unknown): value is BasesStorageEnvelope {
+    
+    console.log("readBasesFromStorage: isBasesStorageEnvelope(raw)");
     if (typeof value !== 'object' || value === null) return false;
-
+    console.log("readBasesFromStorage: isBasesStorageEnvelope(raw)2");
     const envelope = value as BasesStorageEnvelope;
     return typeof envelope.schemaVersion === 'number' && 'bases' in envelope;
 }
 
-export function writeBasesToStorage(bases: Base[]) {
+export async function writeBasesToStorage(bases: Base[]) {
     const envelope: BasesStorageEnvelope = {
         schemaVersion: BASES_SCHEMA_VERSION,
         bases,
     };
 
-    localStorage.setItem(BASES_STORAGE_KEY, JSON.stringify(envelope));
+    localStorage.setItem(BASES_STORAGE_KEY, JSON.stringify(envelope)); //NJ: removed local storage
+    await writeToPersist(BASES_STORAGE_KEY, envelope);  // NJ: neu funktion to write JSON to filesystem
+}
+
+async function fetchFromPersist(key: string): Promise<string | null> {
+    try {
+        const res = await fetch(`/api/persist/${key}`);
+        if (!res.ok) return null;
+        const text = await res.text();
+        return text || null;
+    } catch {
+        return null;
+    }
+}
+
+export function fetchFromPersistSynchronous(key: string): string | null {
+    try {
+        const xhr = new XMLHttpRequest();
+        // Das dritte Argument 'false' erzwingt, dass der Request SYNCHRON läuft!
+        xhr.open('GET', `/api/persist/${key}`, false); 
+        xhr.send(null);
+
+        if (xhr.status !== 200) return null;
+        return xhr.responseText || null;
+    } catch {
+        return null;
+    }
+}
+
+async function writeToPersist(key: string, data: unknown): Promise<void> {
+    try {
+        await fetch(`/api/persist/${key}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+    } catch (e) {
+        console.error('Error writing to persist API:', e);
+    }
 }
 
 function normalizeBases(rawBases: unknown): Base[] {
@@ -249,19 +289,32 @@ function normalizeBases(rawBases: unknown): Base[] {
 }
 
 export function readBasesFromStorage(): Base[] | null {
-    const stored = localStorage.getItem(BASES_STORAGE_KEY);
-    if (!stored) return null;
+    //const stored = localStorage.getItem(BASES_STORAGE_KEY);   //NJ: removed local storage
+    let stored = fetchFromPersistSynchronous(BASES_STORAGE_KEY); // NJ: load JSON file
+    if (typeof stored === 'string') {
+        stored = JSON.parse(stored);
+    }
 
-    const raw = JSON.parse(stored) as unknown;
+    if (!stored) return null;
+    console.log("readBasesFromStorage");
+
+    let raw = JSON.parse(stored) as unknown;
+
+    console.log("readBasesFromStorage: " + raw);
 
     if (Array.isArray(raw)) {
+        console.log("readBasesFromStorage: Array.isArray(raw)");
         const bases = normalizeBases(raw);
         writeBasesToStorage(bases);
         return bases;
     }
 
+
+
     if (isBasesStorageEnvelope(raw)) {
+        console.log("readBasesFromStorage: isBasesStorageEnvelope(raw) 3");
         const bases = normalizeBases(raw.bases);
+        
         if (raw.schemaVersion !== BASES_SCHEMA_VERSION || !Array.isArray(raw.bases)) {
             writeBasesToStorage(bases);
         }
