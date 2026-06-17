@@ -7,8 +7,8 @@ import { promisify } from 'util';
 const inflateRawAsync = promisify(zlib.inflateRaw);
 const inflateAsync = promisify(zlib.inflate);
 
-// Change <YOUR_STEAM_ID> !!!
-const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/<YOUR_STEAM_ID>/1631270/remote/Saved/SaveGames/PlanerTool/';
+// Change <YOUR_STEAM_ID>
+const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/<YOUR_STEAM_ID>/1631270/remote/Saved/SaveGames/Nick/';
 const OUTPUT_NAME = './data/gameData.json';
 let timeoutId = null;
 
@@ -157,7 +157,11 @@ async function filterSaveFile(rawData) {
 
 
         // Wenn es der ResourceRedistributor ist, berechne die Item-Mengen
-        if ((shortName === "DA_ResourceRedistributor" || shortName === "DA_PackageSender") && entities[id].fragmentValues) {
+        if ((shortName === "DA_ResourceRedistributor" || 
+                shortName === "DA_UniversalStorage" ||
+                shortName === "DA_Storage" ||
+                shortName === "DA_PackageSender") && 
+                entities[id].fragmentValues) {
             const itemsSummary = {};
             let totalCount = 0;
 
@@ -235,11 +239,10 @@ async function filterSaveFile(rawData) {
                     }
                     
                     if (entityId && filteredEntities[entityId] && "numItems" in filteredEntities[entityId]) {
-                        if (filteredEntities[entityId].entityConfigDataPath == 'DA_ResourceRedistributor') {
-                            building.storedOutput = filteredEntities[entityId].numItems;
-                        }
                         if (filteredEntities[entityId].entityConfigDataPath == 'DA_PackageSender') {
                             building.storedInput = filteredEntities[entityId].numItems;
+                        } else {
+                            building.storedOutput = filteredEntities[entityId].numItems;
                         }
                     }
                 }

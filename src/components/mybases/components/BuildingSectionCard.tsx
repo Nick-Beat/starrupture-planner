@@ -103,6 +103,12 @@ const LinkedInputItemButton: React.FC<LinkedInputItemButtonProps> = ({ baseBuild
               className="w-8 h-8"
             />
             <span className="text-xs text-center">{resolved.ratePerMinute}/min</span>
+            {resolved.storedOutput !== undefined && resolved.storedOutput !== null && (
+              <span className="text-xs text-center">Out: {resolved.storedOutput}</span>
+            )}
+            {resolved.storedInput !== undefined && resolved.storedInput !== null && (
+              <span className="text-xs text-center">In: {resolved.storedInput}</span>
+            )}
             <span className={`badge badge-xs px-1 min-h-0 h-4 ${hasError ? 'badge-error' : 'badge-outline'}`}>
               Linked
             </span>
