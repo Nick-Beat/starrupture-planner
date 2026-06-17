@@ -50,6 +50,7 @@ export const SUB_IDS = {
     BASES_INPUT_ITEMS_BY_BASE_ID: 'basesInputItemsByBaseId',
     BASES_OUTPUT_ITEMS_BY_BASE_ID: 'basesOutputItemsByBaseId',
     BASES_DEFENSE_BUILDINGS_BY_BASE_ID: 'basesDefenseBuildingsByBaseId',
+    BASES_STORAGE_BUILDINGS_BY_BASE_ID: 'basesStorageBuildingsByBaseId',
     BASES_BUILDING_SECTION_STATS: 'basesBuildingSectionStats',
     BASES_BUILDING_SECTION_BUILDINGS: 'basesBuildingSectionBuildings',
     BASES_AVAILABLE_BUILDINGS_FOR_SECTION: 'basesAvailableBuildingsForSection',

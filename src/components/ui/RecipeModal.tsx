@@ -54,7 +54,7 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ isOpen, onClose, item,
         </div>
 
         {/* Modal Actions */}
-        <div className="modal-action flex-shrink-0">
+        <div className="modal-action flex-shrink-0"> 
           <button className="btn btn-primary btn-sm lg:btn-md" onClick={onClose}>
             Close
           </button>

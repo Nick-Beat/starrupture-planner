@@ -9,6 +9,7 @@ import type {
   BaseInputItem,
   BaseOutputItem,
   BaseDefenseBuilding,
+  BaseStorageBuilding,
   ProductionPlanRequirementsStatus,
 } from '../types';
 
@@ -82,6 +83,8 @@ export const BaseCard: React.FC<BaseCardProps> = ({ base, onOpen, onRename, onDe
   const inputItems = useSubscription<BaseInputItem[]>([SUB_IDS.BASES_INPUT_ITEMS_BY_BASE_ID, base.id]);
   const outputItems = useSubscription<BaseOutputItem[]>([SUB_IDS.BASES_OUTPUT_ITEMS_BY_BASE_ID, base.id]);
   const defenseBuildings = useSubscription<BaseDefenseBuilding[]>([SUB_IDS.BASES_DEFENSE_BUILDINGS_BY_BASE_ID, base.id]);
+  const storageBuildings = useSubscription<BaseStorageBuilding[]>([SUB_IDS.BASES_STORAGE_BUILDINGS_BY_BASE_ID, base.id]);
+
 
   // Get data for plans
   const itemsMap = useSubscription<Record<string, Item>>([SUB_IDS.ITEMS_BY_ID_MAP]);
@@ -241,7 +244,7 @@ export const BaseCard: React.FC<BaseCardProps> = ({ base, onOpen, onRename, onDe
                     <div
                       key={building.id}
                       className="flex items-center gap-1 bg-base-300 rounded-lg px-2 py-1"
-                      title={`${building.name}${count > 1 ? ` (${count})` : ''}`}
+                      title={`${building.name}`}
                     >
                       <BuildingImage
                         buildingId={building.id}
@@ -250,8 +253,31 @@ export const BaseCard: React.FC<BaseCardProps> = ({ base, onOpen, onRename, onDe
                       />
                       <span className="text-xs font-medium">{building.name}</span>
                       {count > 1 && (
-                        <span className="text-xs font-medium text-base-content/70">×{count}</span>
+                        <span className="text-xs font-medium text-base-content/70"></span>
                       )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {storageBuildings.length > 0 && (
+              <div className="space-y-1">
+                <div className="text-sm text-base-content/70 mb-1">Storage</div>
+                <div className="flex flex-wrap gap-2">
+                  {storageBuildings.map(({ building, name }) => (
+                    <div
+                      key={building.id}
+                      className="flex items-center gap-1 bg-base-300 rounded-lg px-2 py-1"
+                      title={`${building.name}${name}`}
+                    >
+                      <BuildingImage
+                        buildingId={building.id}
+                        building={building}
+                        size="small"
+                      />
+                      <span className="text-xs font-medium">{building.name}</span>
+                        <span className="text-xs font-medium text-base-content/70">×</span>
                     </div>
                   ))}
                 </div>

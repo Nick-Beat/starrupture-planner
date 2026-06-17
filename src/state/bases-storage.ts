@@ -63,7 +63,7 @@ async function writeToPersist(key: string, data: unknown): Promise<void> {
         await fetch(`/api/persist/${key}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data, null, 4),
         });
     } catch (e) {
         console.error('Error writing to persist API:', e);
@@ -117,6 +117,10 @@ function normalizeBases(rawBases: unknown): Base[] {
         const ratePerMinute = typeof building.ratePerMinute === 'number' && Number.isFinite(building.ratePerMinute)
             ? building.ratePerMinute
             : undefined;
+        // NJ: add storedOutput
+        const storedOutput = typeof building.storedOutput === 'number' && Number.isFinite(building.storedOutput)
+            ? building.storedOutput
+            : undefined;
 
         const name = typeof building.name === 'string' && building.name.trim()
             ? building.name.trim()
@@ -134,6 +138,7 @@ function normalizeBases(rawBases: unknown): Base[] {
 
         if (selectedItemId !== undefined) normalized.selectedItemId = selectedItemId;
         if (ratePerMinute !== undefined) normalized.ratePerMinute = ratePerMinute;
+        if (storedOutput !== undefined) normalized.storedOutput = storedOutput;
         if (name !== undefined) normalized.name = name;
         if (description !== undefined) normalized.description = description;
         if (linkedOutput !== undefined) normalized.linkedOutput = linkedOutput;

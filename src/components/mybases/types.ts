@@ -123,6 +123,18 @@ export interface BaseDefenseBuilding {
 }
 
 /**
+ * Represents a storage building in a base, with count for duplicates.
+ */
+export interface BaseStorageBuilding {
+  /** Unique ID of this building instance in the base */
+  baseBuildingId: string;
+  building: Building;
+  name: string;
+  //selectedItemId: Item;
+  storedOutput: number;
+}
+
+/**
  * Top produced item for stats display and sharing.
  */
 export interface TopProducedItem {

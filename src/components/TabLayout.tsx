@@ -5,7 +5,7 @@ import RecipesPage from './RecipesPage';
 import CorporationsPage from './CorporationsPage';
 import MyBasesPage from './MyBasesPage';
 import PlannerPage from './PlannerPage';
-import { ThemeToggle, GitHubButton, DiscordButton, VersionSelector, ConfirmationDialog } from './ui';
+import { ThemeToggle, GitHubButton, DiscordButton, RuptureTimer, VersionSelector, ConfirmationDialog } from './ui';
 import { useNavigationSync } from '../hooks/useNavigationSync';
 import { dispatch, useSubscription } from '@flexsurfer/reflex';
 import { SUB_IDS } from '../state/sub-ids';
@@ -148,10 +148,11 @@ const TabLayout = () => {
           </div>
 
           {/* Controls - always visible but compact on mobile */}
-          <div className="navbar-end flex items-center gap-1 lg:gap-2">
+          <div className="navbar-end flex items-center gap-1 lg:gap-1">
             <DiscordButton />
             <GitHubButton />
             <ThemeToggle />
+            <RuptureTimer />
           </div>
         </div>
 

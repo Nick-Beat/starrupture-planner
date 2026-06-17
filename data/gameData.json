@@ -1,0 +1,98 @@
+{
+    "gameVersion": {
+        "major": 0,
+        "minor": 2,
+        "pATCH": 7
+    },
+    "itemData": {
+        "BaseCoreReplicationHelperSaveData": {
+            "baseCoreSaveData": [
+                {
+                    "baseCore": {
+                        "iD": 349
+                    },
+                    "infectionSphere": false,
+                    "upgradeLevel": 0,
+                    "selectedLevelToUpgrade": -1,
+                    "itemsAddedToUpgrade": []
+                },
+                {
+                    "baseCore": {
+                        "iD": 7496
+                    },
+                    "infectionSphere": false,
+                    "upgradeLevel": 0,
+                    "selectedLevelToUpgrade": -1,
+                    "itemsAddedToUpgrade": []
+                }
+            ]
+        },
+        "CrBuildingCustomNameSubsystem": {
+            "customNames": {
+                "(ID=349)": "HOME_KERN_1",
+                "(ID=4535)": "HOME_PL_1",
+                "(ID=8207)": "BASE2_PL_1",
+                "(ID=7496)": "BASE2_CORE_1",
+                "(ID=10780)": "BASE2_LAGER_1",
+                "(ID=11260)": "HOME_LAGER_1",
+                "(ID=11560)": "HOME_LAGER_2"
+            }
+        },
+        "EnviroWaveTimer": {
+            "nextWaveTimer": 1832.4537353515625,
+            "numWaves": 2
+        },
+        "Mass": {
+            "electricitySubsystemCustomState": {
+                "highestConsumedElectricity": 70,
+                "highestProducedElectricity": 80
+            }
+        },
+        "entities": {
+            "(ID=349)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_BaseCore",
+                "numItems": 0
+            },
+            "(ID=4535)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_PersonalStorage",
+                "numItems": 0
+            },
+            "(ID=8207)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_PersonalStorage",
+                "numItems": 0
+            },
+            "(ID=7496)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_BaseCore",
+                "numItems": 0
+            },
+            "(ID=10780)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_ResourceRedistributor",
+                "numItems": 400,
+                "itemTypes": {
+                    "I_CalciumBlock_C": 400
+                }
+            },
+            "(ID=11260)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_ResourceRedistributor",
+                "numItems": 400,
+                "itemTypes": {
+                    "I_WolframBar_C": 400
+                }
+            },
+            "(ID=11560)": {
+                "fragmentValues": [],
+                "entityConfigDataPath": "DA_ResourceRedistributor",
+                "numItems": 400,
+                "itemTypes": {
+                    "I_TitaniumBar_C": 400
+                }
+            }
+        }
+    }
+}

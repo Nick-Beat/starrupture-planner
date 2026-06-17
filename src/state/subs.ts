@@ -1,4 +1,4 @@
-import { regSub } from '@flexsurfer/reflex';
+﻿import { regSub } from '@flexsurfer/reflex';
 import { SUB_IDS } from './sub-ids';
 import type {
     Item,
@@ -50,6 +50,7 @@ import type {
     BaseOutputItem,
     LinkableOutputItem,
     BaseDefenseBuilding,
+    BaseStorageBuilding,
     BuildingSectionType,
     MyBasesStats,
     ProductionPlanSectionStats,
@@ -737,7 +738,7 @@ regSub(SUB_IDS.BASES_BASE_BY_ID,
     },
     () => [[SUB_IDS.BASES_BY_ID_MAP]]);
 
-/** Pooled energy context — aggregated generation/consumption across an energy group. */
+/** Pooled energy context â€” aggregated generation/consumption across an energy group. */
 interface PooledEnergyContext {
     pooledGeneration: number;
     pooledConsumption: number;
@@ -921,6 +922,24 @@ regSub(SUB_IDS.BASES_DEFENSE_BUILDINGS_BY_BASE_ID,
         });
 
         return Array.from(defenseMap.values());
+    },
+    () => [[SUB_IDS.BASES_BY_ID_MAP], [SUB_IDS.BUILDINGS_BY_ID_MAP]]);
+
+regSub(SUB_IDS.BASES_STORAGE_BUILDINGS_BY_BASE_ID,
+    (basesById: BasesById, buildingsById: BuildingsByIdMap, baseId: string): BaseStorageBuilding[] => {
+        const base = basesById[baseId];
+        if (!base) return [];
+
+        const storageMap = new Map<string, BaseStorageBuilding>();
+
+        base.buildings.forEach((baseBuilding: BaseBuilding) => {
+            const building = buildingsById[baseBuilding.buildingTypeId];
+            if (building && building.type === 'storage') {
+                // NJ: add function to return storageBuildings
+            }
+        });
+
+        return Array.from(storageMap.values());
     },
     () => [[SUB_IDS.BASES_BY_ID_MAP], [SUB_IDS.BUILDINGS_BY_ID_MAP]]);
 
@@ -1348,17 +1367,17 @@ regSub(SUB_IDS.PRODUCTION_PLAN_SECTION_VIEW_MODEL_BY_ID,
             return null;
         }
 
-        // Item name — derived from items lookup
+        // Item name â€” derived from items lookup
         const itemName = section.selectedItemId
             ? (itemsMap[section.selectedItemId]?.name || section.selectedItemId)
             : '';
 
-        // Corporation name — derived from corporations lookup
+        // Corporation name â€” derived from corporations lookup
         const corporationName = section.corporationLevel
             ? (corporations.find(c => c.id === section.corporationLevel?.corporationId)?.name || null)
             : null;
 
-        // Stats — calculated from buildings map by looking up building types
+        // Stats â€” calculated from buildings map by looking up building types
         const requiredBuildings = productionFlow.nodes.length > 0
             ? computeRequiredBuildings(productionFlow)
             : section.requiredBuildings || [];
@@ -1965,3 +1984,6 @@ regSub(SUB_IDS.BASES_OVERVIEW_BUILDING_COVERAGE_ROWS,
             .sort((left, right) => right.totalRequired - left.totalRequired);
     },
     () => [[SUB_IDS.BASES_SELECTED_BASE], [SUB_IDS.BUILDINGS_LIST]]);
+
+
+

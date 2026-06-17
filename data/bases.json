@@ -1,1 +1,146 @@
-{"schemaVersion":3,"bases":[{"id":"base_1781621940497_o78qvfmes","name":"jnj","coreLevel":0,"buildings":[{"id":"building_1781623825326_5sqmbw7rf","buildingTypeId":"storage_depot_v2","sectionType":"inputs","selectedItemId":"battery","ratePerMinute":12}],"productions":[{"id":"pps_1781621946204_4ger3ylfo","name":"Applicator Production","selectedItemId":"applicator","targetAmount":15,"active":false,"status":"inactive","recipeSelections":{},"inputs":[],"requiredBuildings":[{"buildingId":"fabricator","count":6},{"buildingId":"smelter","count":3},{"buildingId":"furnace","count":3}]}]}]}
+{
+    "schemaVersion": 3,
+    "bases": [
+        {
+            "id": "base_1781621940497_o78qvfmes",
+            "name": "jnj",
+            "coreLevel": 0,
+            "buildings": [
+                {
+                    "id": "building_1781623825326_5sqmbw7rf",
+                    "buildingTypeId": "storage_depot_v2",
+                    "sectionType": "inputs",
+                    "selectedItemId": "battery",
+                    "ratePerMinute": 20
+                },
+                {
+                    "id": "building_1781638706431_rddzw3zy0",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "inputs",
+                    "selectedItemId": "ore_titanium",
+                    "ratePerMinute": 60,
+                    "storedOutput": 100,
+                    "name": "HOME_LAGER_1"
+                },
+                {
+                    "id": "building_1781639604486_jwtbjaqfz",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_pw70uxqoh",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_v5bxrngrl",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_x04x5h8dc",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_qql59o2zy",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_qkyj0n6wt",
+                    "buildingTypeId": "fabricator",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_d63zpmtu9",
+                    "buildingTypeId": "smelter",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_nb56kkbf5",
+                    "buildingTypeId": "smelter",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_490s8wys2",
+                    "buildingTypeId": "smelter",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_ti1l5pedr",
+                    "buildingTypeId": "furnace",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_ljc7sqn07",
+                    "buildingTypeId": "furnace",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781639604486_e79soes9c",
+                    "buildingTypeId": "furnace",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781642281061_dyjqbwabe",
+                    "buildingTypeId": "wind_turbine_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781642281061_khhfy02i1",
+                    "buildingTypeId": "wind_turbine_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781642281061_u5xbkx4y7",
+                    "buildingTypeId": "wind_turbine_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781642281061_dd05scjle",
+                    "buildingTypeId": "wind_turbine_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781642762341_22w7fpy79",
+                    "buildingTypeId": "turret_v1",
+                    "sectionType": "infrastructure"
+                },
+                {
+                    "id": "building_1781643337930_542iq152f",
+                    "buildingTypeId": "storage_depot_v2",
+                    "sectionType": "inputs",
+                    "selectedItemId": "block_calcium",
+                    "ratePerMinute": 60
+                }
+            ],
+            "productions": [
+                {
+                    "id": "pps_1781621946204_4ger3ylfo",
+                    "name": "Applicator Production",
+                    "selectedItemId": "applicator",
+                    "targetAmount": 15,
+                    "active": false,
+                    "status": "inactive",
+                    "recipeSelections": {},
+                    "inputs": [],
+                    "requiredBuildings": [
+                        {
+                            "buildingId": "fabricator",
+                            "count": 6
+                        },
+                        {
+                            "buildingId": "smelter",
+                            "count": 3
+                        },
+                        {
+                            "buildingId": "furnace",
+                            "count": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -20,6 +20,7 @@ export type {
   BaseOutputItem,
   LinkableOutputItem,
   BaseDefenseBuilding,
+  BaseStorageBuilding,
   ProductionPlanSectionStats,
   BuildingRequirement,
   InputRequirement,
