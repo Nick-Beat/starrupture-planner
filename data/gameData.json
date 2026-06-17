@@ -34,12 +34,12 @@
                 "(ID=8207)": "BASE2_PL_1",
                 "(ID=7496)": "BASE2_CORE_1",
                 "(ID=10780)": "BASE2_LAGER_1",
-                "(ID=11260)": "HOME_LAGER_1",
-                "(ID=11560)": "HOME_LAGER_2"
+                "(ID=11260)": "HOME_L_WOLFRAMBAR",
+                "(ID=11560)": "HOME_L_TITANBAR"
             }
         },
         "EnviroWaveTimer": {
-            "nextWaveTimer": 1832.4537353515625,
+            "nextWaveTimer": 1670.4122314453125,
             "numWaves": 2
         },
         "Mass": {
@@ -80,17 +80,17 @@
             "(ID=11260)": {
                 "fragmentValues": [],
                 "entityConfigDataPath": "DA_ResourceRedistributor",
-                "numItems": 400,
+                "numItems": 104,
                 "itemTypes": {
-                    "I_WolframBar_C": 400
+                    "I_WolframBar_C": 104
                 }
             },
             "(ID=11560)": {
                 "fragmentValues": [],
                 "entityConfigDataPath": "DA_ResourceRedistributor",
-                "numItems": 400,
+                "numItems": 348,
                 "itemTypes": {
-                    "I_TitaniumBar_C": 400
+                    "I_TitaniumBar_C": 348
                 }
             }
         }

@@ -7,7 +7,8 @@ import { promisify } from 'util';
 const inflateRawAsync = promisify(zlib.inflateRaw);
 const inflateAsync = promisify(zlib.inflate);
 
-const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/65316370/1631270/remote/Saved/SaveGames/PlanerTool/';
+// Change <YOUR_STEAM_ID> !!!
+const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/<YOUR_STEAM_ID>/1631270/remote/Saved/SaveGames/PlanerTool/';
 const OUTPUT_NAME = './data/gameData.json';
 let timeoutId = null;
 
@@ -156,7 +157,7 @@ async function filterSaveFile(rawData) {
 
 
         // Wenn es der ResourceRedistributor ist, berechne die Item-Mengen
-        if (shortName === "DA_ResourceRedistributor" && entities[id].fragmentValues) {
+        if ((shortName === "DA_ResourceRedistributor" || shortName === "DA_PackageSender") && entities[id].fragmentValues) {
             const itemsSummary = {};
             let totalCount = 0;
 
@@ -215,6 +216,37 @@ async function filterSaveFile(rawData) {
         // 4. Als "3_filtered.json" abspeichern (schön formatiert mit Einrückung)
         //await fs.writeFile('0_filtered.json', JSON.stringify(filteredResult, null, 4), 'utf8');
         console.log('[SUCCESS] Filtered data saved to 0_filtered.json');
+
+            // Werte aus gameData.json in bases.json kopieren
+            const fileData = await fs.readFile("data\\bases.json");
+            const bases = JSON.parse(fileData);
+            
+            for (const base of bases.bases) {
+                for (const building of base.buildings) {
+                    if (!building.name) continue;
+                    
+                    // Find the entity key that maps to this building name
+                    let entityId = null;
+                    for (const [key, value] of Object.entries(customNames)) {
+                        if (value === building.name) {
+                            entityId = key;
+                            break;
+                        }
+                    }
+                    
+                    if (entityId && filteredEntities[entityId] && "numItems" in filteredEntities[entityId]) {
+                        if (filteredEntities[entityId].entityConfigDataPath == 'DA_ResourceRedistributor') {
+                            building.storedOutput = filteredEntities[entityId].numItems;
+                        }
+                        if (filteredEntities[entityId].entityConfigDataPath == 'DA_PackageSender') {
+                            building.storedInput = filteredEntities[entityId].numItems;
+                        }
+                    }
+                }
+            }
+            await fs.writeFile("data\\bases.json", JSON.stringify(bases, null, 4), 'utf8');
+
+
         return filteredResult
 
     } catch (error) {
@@ -251,11 +283,15 @@ watch(WATCH_DIR, (eventType, filename) => {
             const filteredResult = await filterSaveFile(result)
             await fs.writeFile(OUTPUT_NAME, JSON.stringify(filteredResult, null, 4), 'utf8');
             console.log(`[SUCCESS] Saved decompressed data successfully to ${dynamicOutputPath}`);
+
+
         } catch (error) {
             console.error('[FATAL] Process failed for file:', filename, error.message);
         }
         // Führt die Extraktion nach Ablauf des Timers aus
         //await processSaveFile();
+
+
     }, 10000);
 });
 

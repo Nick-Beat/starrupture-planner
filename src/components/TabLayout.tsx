@@ -149,9 +149,9 @@ const TabLayout = () => {
 
           {/* Controls - always visible but compact on mobile */}
           <div className="navbar-end flex items-center gap-1 lg:gap-1">
-            <DiscordButton />
+            {/*<DiscordButton />
             <GitHubButton />
-            <ThemeToggle />
+            <ThemeToggle />*/}
             <RuptureTimer />
           </div>
         </div>

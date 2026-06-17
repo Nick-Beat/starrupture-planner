@@ -111,6 +111,7 @@ export interface BaseBuilding {
     selectedItemId?: string; // Selected item for input buildings
     ratePerMinute?: number; // Rate per minute for the selected item
     storedOutput?: number; // NJ: Count of items stored in output buffer
+    storedInput?: number; // NJ: Count of items stored in input buffer
     linkedOutput?: LinkedOutputReference; // Optional live link from this input to an output building
     name?: string; // Optional custom name for this building instance
     description?: string; // Optional custom description for this building instance
@@ -138,6 +139,11 @@ export interface Production {
 export interface EnergyGroup {
     id: string;
     name: string;
+}
+
+export interface RuptureTimer {
+    nextWaveTimer: number;
+    numWaves: number;
 }
 
 export interface Base {

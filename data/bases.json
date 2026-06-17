@@ -2,143 +2,219 @@
     "schemaVersion": 3,
     "bases": [
         {
-            "id": "base_1781621940497_o78qvfmes",
-            "name": "jnj",
+            "id": "base_1781690523006_duazsugh8",
+            "name": "Planner Beispiel",
             "coreLevel": 0,
             "buildings": [
                 {
-                    "id": "building_1781623825326_5sqmbw7rf",
-                    "buildingTypeId": "storage_depot_v2",
+                    "id": "building_1781690564852_3va5gzrww",
+                    "buildingTypeId": "ore_excavator",
                     "sectionType": "inputs",
-                    "selectedItemId": "battery",
-                    "ratePerMinute": 20
+                    "selectedItemId": "ore_wolfram",
+                    "ratePerMinute": 60
                 },
                 {
-                    "id": "building_1781638706431_rddzw3zy0",
-                    "buildingTypeId": "storage_depot_v1",
+                    "id": "building_1781690626122_9sr6brkai",
+                    "buildingTypeId": "smelter",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781690652769_sgtaodcdx",
+                    "buildingTypeId": "ore_excavator",
                     "sectionType": "inputs",
                     "selectedItemId": "ore_titanium",
-                    "ratePerMinute": 60,
-                    "storedOutput": 100,
-                    "name": "HOME_LAGER_1"
-                },
-                {
-                    "id": "building_1781639604486_jwtbjaqfz",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_pw70uxqoh",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_v5bxrngrl",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_x04x5h8dc",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_qql59o2zy",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_qkyj0n6wt",
-                    "buildingTypeId": "fabricator",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_d63zpmtu9",
-                    "buildingTypeId": "smelter",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_nb56kkbf5",
-                    "buildingTypeId": "smelter",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_490s8wys2",
-                    "buildingTypeId": "smelter",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_ti1l5pedr",
-                    "buildingTypeId": "furnace",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_ljc7sqn07",
-                    "buildingTypeId": "furnace",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781639604486_e79soes9c",
-                    "buildingTypeId": "furnace",
-                    "sectionType": "production"
-                },
-                {
-                    "id": "building_1781642281061_dyjqbwabe",
-                    "buildingTypeId": "wind_turbine_v1",
-                    "sectionType": "energy"
-                },
-                {
-                    "id": "building_1781642281061_khhfy02i1",
-                    "buildingTypeId": "wind_turbine_v1",
-                    "sectionType": "energy"
-                },
-                {
-                    "id": "building_1781642281061_u5xbkx4y7",
-                    "buildingTypeId": "wind_turbine_v1",
-                    "sectionType": "energy"
-                },
-                {
-                    "id": "building_1781642281061_dd05scjle",
-                    "buildingTypeId": "wind_turbine_v1",
-                    "sectionType": "energy"
-                },
-                {
-                    "id": "building_1781642762341_22w7fpy79",
-                    "buildingTypeId": "turret_v1",
-                    "sectionType": "infrastructure"
-                },
-                {
-                    "id": "building_1781643337930_542iq152f",
-                    "buildingTypeId": "storage_depot_v2",
-                    "sectionType": "inputs",
-                    "selectedItemId": "block_calcium",
                     "ratePerMinute": 60
+                },
+                {
+                    "id": "building_1781690662196_r93nltire",
+                    "buildingTypeId": "smelter",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781690997351_8c4t31433",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "inputs",
+                    "name": "HOME_L_WOLFRAMBAR",
+                    "selectedItemId": "bar_wolfram",
+                    "ratePerMinute": 60,
+                    "linkedOutput": {
+                        "baseId": "base_1781690523006_duazsugh8",
+                        "buildingId": "building_1781691022415_dfznusn9b",
+                        "itemIdSnapshot": "bar_wolfram",
+                        "ratePerMinuteSnapshot": 60
+                    }
+                },
+                {
+                    "id": "building_1781691022415_dfznusn9b",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "outputs",
+                    "name": "HOME_L_WOLFRAMBAR",
+                    "selectedItemId": "bar_wolfram",
+                    "ratePerMinute": 60
+                },
+                {
+                    "id": "building_1781691061026_ai2gt8mw3",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "outputs",
+                    "name": "HOME_L_TITANBAR",
+                    "selectedItemId": "bar_titanium",
+                    "ratePerMinute": 60
+                },
+                {
+                    "id": "building_1781691073511_vly547afq",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "inputs",
+                    "name": "HOME_L_TITANBAR",
+                    "selectedItemId": "bar_titanium",
+                    "ratePerMinute": 60,
+                    "linkedOutput": {
+                        "baseId": "base_1781690523006_duazsugh8",
+                        "buildingId": "building_1781691061026_ai2gt8mw3",
+                        "itemIdSnapshot": "bar_titanium",
+                        "ratePerMinuteSnapshot": 60
+                    }
+                },
+                {
+                    "id": "building_1781691089864_fovw5qnz9",
+                    "buildingTypeId": "solar_generator_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781691089864_telnrqda5",
+                    "buildingTypeId": "solar_generator_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781691089864_mbrysyxmo",
+                    "buildingTypeId": "solar_generator_v1",
+                    "sectionType": "energy"
+                },
+                {
+                    "id": "building_1781691109419_nb71lp0ls",
+                    "buildingTypeId": "habitat",
+                    "sectionType": "infrastructure",
+                    "name": "HOME"
                 }
             ],
             "productions": [
                 {
-                    "id": "pps_1781621946204_4ger3ylfo",
-                    "name": "Applicator Production",
-                    "selectedItemId": "applicator",
-                    "targetAmount": 15,
-                    "active": false,
-                    "status": "inactive",
+                    "id": "pps_1781690618511_9ctveorbg",
+                    "name": "Wolfram Bar Production",
+                    "selectedItemId": "bar_wolfram",
+                    "targetAmount": 60,
+                    "active": true,
+                    "status": "active",
                     "recipeSelections": {},
-                    "inputs": [],
+                    "inputs": [
+                        {
+                            "id": "building_1781690564852_3va5gzrww",
+                            "buildingTypeId": "ore_excavator",
+                            "sectionType": "inputs",
+                            "selectedItemId": "ore_wolfram",
+                            "ratePerMinute": 60
+                        }
+                    ],
                     "requiredBuildings": [
                         {
-                            "buildingId": "fabricator",
-                            "count": 6
-                        },
+                            "buildingId": "smelter",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "id": "pps_1781690657768_xp7d0lg66",
+                    "name": "Titanium Bar Production",
+                    "selectedItemId": "bar_titanium",
+                    "targetAmount": 60,
+                    "active": true,
+                    "status": "active",
+                    "recipeSelections": {},
+                    "inputs": [
+                        {
+                            "id": "building_1781690652769_sgtaodcdx",
+                            "buildingTypeId": "ore_excavator",
+                            "sectionType": "inputs",
+                            "selectedItemId": "ore_titanium",
+                            "ratePerMinute": 60
+                        }
+                    ],
+                    "requiredBuildings": [
                         {
                             "buildingId": "smelter",
-                            "count": 3
+                            "count": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "base_1781691172220_iyb5iq7oj",
+            "name": "Planner Base 2",
+            "buildings": [
+                {
+                    "id": "building_1781691191267_hura2y6iz",
+                    "buildingTypeId": "storage_depot_v1",
+                    "sectionType": "inputs",
+                    "name": "HOME_L_WOLFRAMBAR",
+                    "selectedItemId": "bar_wolfram",
+                    "ratePerMinute": 60,
+                    "linkedOutput": {
+                        "baseId": "base_1781690523006_duazsugh8",
+                        "buildingId": "building_1781691022415_dfznusn9b",
+                        "itemIdSnapshot": "bar_wolfram",
+                        "ratePerMinuteSnapshot": 60
+                    }
+                },
+                {
+                    "id": "building_1781691233896_ncbxc8xnd",
+                    "buildingTypeId": "craftertier2",
+                    "sectionType": "production"
+                },
+                {
+                    "id": "building_1781691233896_c9f31qhe4",
+                    "buildingTypeId": "furnace",
+                    "sectionType": "production"
+                }
+            ],
+            "productions": [
+                {
+                    "id": "pps_1781691229863_4iitxfe59",
+                    "name": "Wolfram Plate Production",
+                    "selectedItemId": "wolfram_plate",
+                    "targetAmount": 60,
+                    "active": true,
+                    "corporationLevel": null,
+                    "inputs": [
+                        {
+                            "id": "building_1781691191267_hura2y6iz",
+                            "buildingTypeId": "storage_depot_v1",
+                            "sectionType": "inputs",
+                            "name": "HOME_L_WOLFRAMBAR",
+                            "selectedItemId": "bar_wolfram",
+                            "ratePerMinute": 60,
+                            "linkedOutput": {
+                                "baseId": "base_1781690523006_duazsugh8",
+                                "buildingId": "building_1781691022415_dfznusn9b",
+                                "itemIdSnapshot": "bar_wolfram",
+                                "ratePerMinuteSnapshot": 60
+                            },
+                            "linkedOutputStatus": "ok"
+                        }
+                    ],
+                    "status": "active",
+                    "requiredBuildings": [
+                        {
+                            "buildingId": "craftertier2",
+                            "count": 1
                         },
                         {
                             "buildingId": "furnace",
-                            "count": 3
+                            "count": 1
                         }
-                    ]
+                    ],
+                    "recipeSelections": {
+                        "wolfram_plate": "craftertier2:2"
+                    }
                 }
             ]
         }

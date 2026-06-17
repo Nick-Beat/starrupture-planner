@@ -152,7 +152,6 @@ export const BuildingSectionCard: React.FC<BuildingSectionCardProps> = ({
 
   const selectedItem = baseBuilding?.selectedItemId ? itemsMap[baseBuilding.selectedItemId] : null;
   const displayName = baseBuilding?.name || building.name;
-  const storedOutput = baseBuilding?.storedOutput || 0;
   const description = baseBuilding?.description;
   const totalPower = (building.power || 0) * count;
   const totalHeat = (building.heat || 0) * count;
@@ -268,7 +267,12 @@ export const BuildingSectionCard: React.FC<BuildingSectionCardProps> = ({
                         className="w-8 h-8"
                       />
                       <span className="text-xs text-center">{baseBuilding.ratePerMinute}/min</span>
-                      <span className="text-xs text-center">Inv: {baseBuilding.storedOutput}</span>
+                      {baseBuilding.storedOutput !== undefined && baseBuilding.storedOutput !== null && (
+                        <span className="text-xs text-center">Out: {baseBuilding.storedOutput}</span>
+                      )}
+                      {baseBuilding.storedInput !== undefined && baseBuilding.storedInput !== null && (
+                        <span className="text-xs text-center">In: {baseBuilding.storedInput}</span>
+                      )}
                     </>
                   ) : (
                     <svg

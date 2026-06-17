@@ -15,10 +15,7 @@ export interface BasesStorageEnvelope {
 }
 
 function isBasesStorageEnvelope(value: unknown): value is BasesStorageEnvelope {
-    
-    console.log("readBasesFromStorage: isBasesStorageEnvelope(raw)");
     if (typeof value !== 'object' || value === null) return false;
-    console.log("readBasesFromStorage: isBasesStorageEnvelope(raw)2");
     const envelope = value as BasesStorageEnvelope;
     return typeof envelope.schemaVersion === 'number' && 'bases' in envelope;
 }
@@ -121,6 +118,10 @@ function normalizeBases(rawBases: unknown): Base[] {
         const storedOutput = typeof building.storedOutput === 'number' && Number.isFinite(building.storedOutput)
             ? building.storedOutput
             : undefined;
+        // NJ: add storedInput
+        const storedInput = typeof building.storedInput === 'number' && Number.isFinite(building.storedInput)
+            ? building.storedInput
+            : undefined;
 
         const name = typeof building.name === 'string' && building.name.trim()
             ? building.name.trim()
@@ -139,6 +140,7 @@ function normalizeBases(rawBases: unknown): Base[] {
         if (selectedItemId !== undefined) normalized.selectedItemId = selectedItemId;
         if (ratePerMinute !== undefined) normalized.ratePerMinute = ratePerMinute;
         if (storedOutput !== undefined) normalized.storedOutput = storedOutput;
+        if (storedInput !== undefined) normalized.storedInput = storedInput;
         if (name !== undefined) normalized.name = name;
         if (description !== undefined) normalized.description = description;
         if (linkedOutput !== undefined) normalized.linkedOutput = linkedOutput;
@@ -301,14 +303,11 @@ export function readBasesFromStorage(): Base[] | null {
     }
 
     if (!stored) return null;
-    console.log("readBasesFromStorage");
 
     let raw = JSON.parse(stored) as unknown;
 
-    console.log("readBasesFromStorage: " + raw);
 
     if (Array.isArray(raw)) {
-        console.log("readBasesFromStorage: Array.isArray(raw)");
         const bases = normalizeBases(raw);
         writeBasesToStorage(bases);
         return bases;
@@ -317,7 +316,6 @@ export function readBasesFromStorage(): Base[] | null {
 
 
     if (isBasesStorageEnvelope(raw)) {
-        console.log("readBasesFromStorage: isBasesStorageEnvelope(raw) 3");
         const bases = normalizeBases(raw.bases);
         
         if (raw.schemaVersion !== BASES_SCHEMA_VERSION || !Array.isArray(raw.bases)) {
