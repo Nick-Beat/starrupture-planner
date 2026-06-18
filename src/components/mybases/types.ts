@@ -130,8 +130,18 @@ export interface BaseStorageBuilding {
   baseBuildingId: string;
   building: Building;
   name: string;
-  //selectedItemId: Item;
+  selectedItemId?: string;
   storedOutput: number;
+  storedInput: number;
+  count?: number;
+}
+
+/**
+ * Extended storage building with base info, used for the aggregated storage view.
+ */
+export interface BaseStorageBuildingWithBase extends BaseStorageBuilding {
+  baseId: string;
+  baseName: string;
 }
 
 /**

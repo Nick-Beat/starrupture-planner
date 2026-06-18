@@ -28,8 +28,9 @@ import { generateReactFlowData } from '../components/planner/visualization/plann
 import { getItemName } from '../utils/itemUtils';
 import type { Node, Edge } from '@xyflow/react';
 import { calculateBaseCoreHeatCapacity, isAmplifierBuilding, getCoreLevels } from '../components/mybases/utils/baseCoreUtils';
-import { getAvailableBuildingsForSection, isBuildingAvailableForSection } from '../components/mybases/utils/buildingSectionUtils';
+import { getAvailableBuildingsForSection, isBuildingAvailableForSection, isDispatcher, isDroneMerger } from '../components/mybases/utils/buildingSectionUtils';
 import { buildActivePlanOccupancy } from '../components/mybases/utils/activePlanOccupancy';
+import type { BaseStorageBuilding, BaseStorageBuildingWithBase } from '../components/mybases/types';
 import { calculateSharedInputShortages } from '../components/mybases/utils/sharedInputShortages';
 import {
     computeRequiredBuildings,
@@ -935,13 +936,59 @@ regSub(SUB_IDS.BASES_STORAGE_BUILDINGS_BY_BASE_ID,
         base.buildings.forEach((baseBuilding: BaseBuilding) => {
             const building = buildingsById[baseBuilding.buildingTypeId];
             if (building && building.type === 'storage') {
-                // NJ: add function to return storageBuildings
+                const existing = storageMap.get(baseBuilding.buildingTypeId);
+                if (existing) {
+                    existing.count += 1;
+                } else {
+                    storageMap.set(baseBuilding.buildingTypeId, {
+                        baseBuildingId: baseBuilding.id,
+                        building: building,
+                        name: baseBuilding.name || building.name,
+                        selectedItemId: baseBuilding.selectedItemId,
+                        storedOutput: baseBuilding.storedOutput || 0,
+                        storedInput: baseBuilding.storedInput || 0,
+                        count: 1,
+                    });
+                }
             }
         });
 
         return Array.from(storageMap.values());
     },
     () => [[SUB_IDS.BASES_BY_ID_MAP], [SUB_IDS.BUILDINGS_BY_ID_MAP]]);
+
+regSub(SUB_IDS.BASES_STORAGE_AGREGATED,
+    (bases: Base[], buildingsById: BuildingsByIdMap): BaseStorageBuildingWithBase[] => {
+        const result: BaseStorageBuildingWithBase[] = [];
+
+        bases.forEach((base) => {
+        const storageBuildings = base.buildings.filter(
+            (baseBuilding: BaseBuilding) => {
+                const building = buildingsById[baseBuilding.buildingTypeId];
+                return building && (isDispatcher(building) || building.type === 'storage' || isDroneMerger(building));
+            }
+        );
+
+            storageBuildings.forEach((baseBuilding: BaseBuilding) => {
+                const building = buildingsById[baseBuilding.buildingTypeId];
+                if (building) {
+                    result.push({
+                        baseId: base.id,
+                        baseName: base.name,
+                        baseBuildingId: baseBuilding.id,
+                        building: building,
+                        name: baseBuilding.name || building.name,
+                        selectedItemId: baseBuilding.selectedItemId,
+                        storedOutput: baseBuilding.storedOutput || 0,
+                        storedInput: baseBuilding.storedInput || 0,
+                    });
+                }
+            });
+        });
+
+        return result;
+    },
+    () => [[SUB_IDS.BASES_LIST], [SUB_IDS.BUILDINGS_BY_ID_MAP]]);
 
 regSub(SUB_IDS.BASES_BUILDING_SECTION_BUILDINGS,
     (base: Base | null, buildingsById: BuildingsByIdMap, _baseId: string, sectionType: BuildingSectionType): BuildingSectionBuilding[] => {

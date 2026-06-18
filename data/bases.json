@@ -3,7 +3,7 @@
     "bases": [
         {
             "id": "base_1781690523006_duazsugh8",
-            "name": "Planner Beispiel",
+            "name": "Planer Beispiel",
             "coreLevel": 0,
             "buildings": [
                 {
@@ -34,9 +34,10 @@
                     "id": "building_1781690997351_8c4t31433",
                     "buildingTypeId": "storage_depot_v1",
                     "sectionType": "inputs",
-                    "name": "HOME_L_WOLFRAMBAR",
                     "selectedItemId": "bar_wolfram",
                     "ratePerMinute": 60,
+                    "storedOutput": 245,
+                    "name": "HOME_L_WOLFRAMBAR",
                     "linkedOutput": {
                         "baseId": "base_1781690523006_duazsugh8",
                         "buildingId": "building_1781691022415_dfznusn9b",
@@ -48,25 +49,28 @@
                     "id": "building_1781691022415_dfznusn9b",
                     "buildingTypeId": "storage_depot_v1",
                     "sectionType": "outputs",
-                    "name": "HOME_L_WOLFRAMBAR",
                     "selectedItemId": "bar_wolfram",
-                    "ratePerMinute": 60
+                    "ratePerMinute": 60,
+                    "storedOutput": 765,
+                    "name": "HOME_L_WOLFRAMBAR"
                 },
                 {
                     "id": "building_1781691061026_ai2gt8mw3",
                     "buildingTypeId": "storage_depot_v1",
                     "sectionType": "outputs",
-                    "name": "HOME_L_TITANBAR",
                     "selectedItemId": "bar_titanium",
-                    "ratePerMinute": 60
+                    "ratePerMinute": 60,
+                    "storedOutput": 887,
+                    "name": "HOME_L_TITANBAR"
                 },
                 {
                     "id": "building_1781691073511_vly547afq",
                     "buildingTypeId": "storage_depot_v1",
                     "sectionType": "inputs",
-                    "name": "HOME_L_TITANBAR",
                     "selectedItemId": "bar_titanium",
                     "ratePerMinute": 60,
+                    "storedOutput": 12,
+                    "name": "HOME_L_TITANBAR",
                     "linkedOutput": {
                         "baseId": "base_1781690523006_duazsugh8",
                         "buildingId": "building_1781691061026_ai2gt8mw3",
@@ -149,15 +153,17 @@
         },
         {
             "id": "base_1781691172220_iyb5iq7oj",
-            "name": "Planner Base 2",
+            "name": "Planer Base 2",
+            "coreLevel": 0,
             "buildings": [
                 {
                     "id": "building_1781691191267_hura2y6iz",
                     "buildingTypeId": "storage_depot_v1",
                     "sectionType": "inputs",
-                    "name": "HOME_L_WOLFRAMBAR",
                     "selectedItemId": "bar_wolfram",
                     "ratePerMinute": 60,
+                    "storedOutput": 1287,
+                    "name": "HOME_L_WOLFRAMBAR",
                     "linkedOutput": {
                         "baseId": "base_1781690523006_duazsugh8",
                         "buildingId": "building_1781691022415_dfznusn9b",
@@ -174,6 +180,15 @@
                     "id": "building_1781691233896_c9f31qhe4",
                     "buildingTypeId": "furnace",
                     "sectionType": "production"
+                },
+                {
+                    "id": "building_1781792435954_z36w3plyv",
+                    "buildingTypeId": "package_dispatcher",
+                    "sectionType": "outputs",
+                    "name": "Base2_CD_BIOFILAMENT_1",
+                    "storedInput": 98,
+                    "selectedItemId": "biofilament",
+                    "ratePerMinute": 23
                 }
             ],
             "productions": [
@@ -183,25 +198,26 @@
                     "selectedItemId": "wolfram_plate",
                     "targetAmount": 60,
                     "active": true,
-                    "corporationLevel": null,
+                    "status": "active",
+                    "recipeSelections": {
+                        "wolfram_plate": "craftertier2:2"
+                    },
                     "inputs": [
                         {
                             "id": "building_1781691191267_hura2y6iz",
                             "buildingTypeId": "storage_depot_v1",
                             "sectionType": "inputs",
-                            "name": "HOME_L_WOLFRAMBAR",
                             "selectedItemId": "bar_wolfram",
                             "ratePerMinute": 60,
+                            "name": "HOME_L_WOLFRAMBAR",
                             "linkedOutput": {
                                 "baseId": "base_1781690523006_duazsugh8",
                                 "buildingId": "building_1781691022415_dfznusn9b",
                                 "itemIdSnapshot": "bar_wolfram",
                                 "ratePerMinuteSnapshot": 60
-                            },
-                            "linkedOutputStatus": "ok"
+                            }
                         }
                     ],
-                    "status": "active",
                     "requiredBuildings": [
                         {
                             "buildingId": "craftertier2",
@@ -211,10 +227,7 @@
                             "buildingId": "furnace",
                             "count": 1
                         }
-                    ],
-                    "recipeSelections": {
-                        "wolfram_plate": "craftertier2:2"
-                    }
+                    ]
                 }
             ]
         }

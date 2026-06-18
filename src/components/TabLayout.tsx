@@ -5,7 +5,8 @@ import RecipesPage from './RecipesPage';
 import CorporationsPage from './CorporationsPage';
 import MyBasesPage from './MyBasesPage';
 import PlannerPage from './PlannerPage';
-import { ThemeToggle, GitHubButton, DiscordButton, RuptureTimer, VersionSelector, ConfirmationDialog } from './ui';
+import StoragePage from './StoragePage';
+import { ThemeToggle, GitHubButton, DiscordButton, RuptureTimer, ConfirmationDialog } from './ui';
 import { useNavigationSync } from '../hooks/useNavigationSync';
 import { dispatch, useSubscription } from '@flexsurfer/reflex';
 import { SUB_IDS } from '../state/sub-ids';
@@ -14,6 +15,7 @@ import type { Tab, TabType } from '../state/db';
 
 const tabs: Tab[] = [
   { id: 'mybases', label: 'My Bases', icon: '🏗️' },
+  { id: 'storage', label: 'Storage', icon: '🗄️' },
   { id: 'items', label: 'Items', icon: '📦' },
   { id: 'recipes', label: 'Buildings', icon: '🏭' },
   { id: 'corporations', label: 'Corporations', icon: '🏢' },
@@ -35,6 +37,7 @@ const TabLayout = () => {
     '/corporations': 'corporations',
     '/planner': 'planner',
     '/mybases': 'mybases',
+    '/storage': 'storage',
   }), []);
 
   const tabToPath = useMemo<Record<TabType, string>>(() => ({
@@ -43,6 +46,7 @@ const TabLayout = () => {
     'corporations': '/corporations', 
     'planner': '/planner',
     'mybases': '/mybases',
+    'storage': '/storage',
   }), []);
 
   // Sync URL changes with state (only when URL changes externally)
@@ -63,7 +67,7 @@ const TabLayout = () => {
     if (path) {
       navigate(path);
       dispatch([EVENT_IDS.UI_SET_ACTIVE_TAB, tabId]);
-      if (tabId === 'mybases') {
+      if (tabId === 'mybases' || tabId === 'storage') {
         dispatch([EVENT_IDS.PRODUCTION_PLAN_MODAL_CLOSE]);
         dispatch([EVENT_IDS.BASES_SET_SELECTED_BASE, null]);
       }
@@ -82,6 +86,8 @@ const TabLayout = () => {
         return <PlannerPage />;
       case 'mybases':
         return <MyBasesPage />;
+      case 'storage':
+        return <StoragePage />;
       default:
         return null;
     }
@@ -108,7 +114,6 @@ const TabLayout = () => {
               }}
             />
             <h1 className="text-sm font-bold mr-2">Rupture Planner</h1>
-            <VersionSelector />
           </div>
 
           {/* Desktop Layout */}
@@ -128,7 +133,6 @@ const TabLayout = () => {
               }}
             />
             <h1 className="text-xl font-bold">Rupture Planner</h1>
-            <VersionSelector />
           </div>
 
           {/* Desktop Tab Navigation */}

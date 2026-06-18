@@ -16,7 +16,7 @@ import type {
     CorporationLevelSelection,
 } from './db';
 import { buildItemsMap, parseCorporations, extractCategories } from './data-utils';
-import { DEFAULT_DATA_VERSION, isValidDataVersion } from './gameDataVersion';
+import { DEFAULT_DATA_VERSION } from './gameDataVersion';
 import { buildProductionFlow } from '../components/planner/core/productionFlowBuilder';
 import type { ProductionFlowResult } from '../components/planner/core/types';
 import type { BuildingSectionType } from '../components/mybases/types';
@@ -177,6 +177,13 @@ regEvent(EVENT_IDS.UI_SET_THEME, ({ draftDb }, newTheme: 'light' | 'dark') => {
     return [[EFFECT_IDS.SET_THEME, newTheme]];
 });
 
+/** Reloads bases from storage (for periodic refresh on StoragePage). */
+regEvent(EVENT_IDS.STORAGE_PAGE_UPDATE_BUILDING_DATA, ({ draftDb, localStoreBases }) => {
+    if (Array.isArray(localStoreBases)) {
+        draftDb.basesList = localStoreBases;
+    }
+}, [[EFFECT_IDS.GET_BASES]]);
+
 regEvent(EVENT_IDS.UI_SHOW_CONFIRMATION_DIALOG, ({ draftDb }, title: string, message: string, onConfirm: () => void, options?: { confirmLabel?: string; cancelLabel?: string; confirmButtonClass?: string; onCancel?: () => void }) => {
     draftDb.uiConfirmationDialog = {
         isOpen: true,
@@ -194,20 +201,17 @@ regEvent(EVENT_IDS.UI_CLOSE_CONFIRMATION_DIALOG, ({ draftDb }) => {
     draftDb.uiConfirmationDialog = {};
 });
 
-function resolveDataVersionFromCoeffect(raw: string | null | undefined): DataVersion {
-    if (isValidDataVersion(raw)) {
-        return raw;
-    }
+function resolveDataVersionFromCoeffect(): DataVersion {
     return DEFAULT_DATA_VERSION;
 }
 
 /** Initialization event */
-regEvent(EVENT_IDS.APP_INIT, ({ draftDb, localStoreTheme, localStoreDataVersion, localStoreBases, localStoreEnergyGroups }) => {
+regEvent(EVENT_IDS.APP_INIT, ({ draftDb, localStoreTheme, localStoreBases, localStoreEnergyGroups }) => {
     if (localStoreTheme) {
         draftDb.uiTheme = localStoreTheme;
     }
 
-    const dataVersion = resolveDataVersionFromCoeffect(localStoreDataVersion);
+    const dataVersion = resolveDataVersionFromCoeffect();
     draftDb.appDataVersion = dataVersion;
 
     draftDb.basesList = Array.isArray(localStoreBases) ? localStoreBases : [];
@@ -217,7 +221,7 @@ regEvent(EVENT_IDS.APP_INIT, ({ draftDb, localStoreTheme, localStoreDataVersion,
         [EFFECT_IDS.SET_THEME, draftDb.uiTheme],
         [EFFECT_IDS.LOAD_GAME_DATA, dataVersion],
     ];
-}, [[EFFECT_IDS.GET_THEME], [EFFECT_IDS.GET_DATA_VERSION], [EFFECT_IDS.GET_BASES], [EFFECT_IDS.GET_ENERGY_GROUPS]]);
+}, [[EFFECT_IDS.GET_THEME], [EFFECT_IDS.GET_BASES], [EFFECT_IDS.GET_ENERGY_GROUPS]]);
 
 regEvent(EVENT_IDS.ITEMS_SET_SELECTED_CATEGORY, ({ draftDb }, category: string) => {
     draftDb.itemsSelectedCategory = category;

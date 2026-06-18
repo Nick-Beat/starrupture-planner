@@ -7,6 +7,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/items" replace />} />
         <Route path="/items" element={<RouteWrapper />} />
+        <Route path="/storage" element={<RouteWrapper />} />
         <Route path="/recipes" element={<RouteWrapper />} />
         <Route path="/corporations" element={<RouteWrapper />} />
         <Route path="/planner" element={<RouteWrapper />} />

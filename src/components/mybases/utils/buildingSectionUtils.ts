@@ -10,8 +10,8 @@ import type { BuildingSectionType } from '../types';
 export const isRawExtractor = (b: Building) =>
   b.type === 'production' && (b.recipes || []).some((recipe) => recipe.inputs.length === 0);
 const isReceiver = (b: Building) => b.id === 'package_receiver';
-const isDispatcher = (b: Building) => b.id === 'orbital_cargo_launcher' || b.id === 'exportertier2' || b.id === 'package_dispatcher';
-const isDroneMerger = (b: Building) => b.id === 'drone_merger_3_to_1';
+export const isDispatcher = (b: Building) => b.id === 'orbital_cargo_launcher' || b.id === 'exportertier2' || b.id === 'package_dispatcher';
+export const isDroneMerger = (b: Building) => b.id === 'drone_merger_3_to_1';
 const isTeleporter = (b: Building) => b.id === 'teleporter';
 
 // ============================================================================

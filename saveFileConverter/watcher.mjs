@@ -8,7 +8,7 @@ const inflateRawAsync = promisify(zlib.inflateRaw);
 const inflateAsync = promisify(zlib.inflate);
 
 // Change <YOUR_STEAM_ID>
-const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/<YOUR_STEAM_ID>/1631270/remote/Saved/SaveGames/Nick/';
+const WATCH_DIR = 'C:/Program Files (x86)/Steam/userdata/<YOUR_STEAM_ID>/1631270/remote/Saved/SaveGames/PlanerTool/';
 const OUTPUT_NAME = './data/gameData.json';
 let timeoutId = null;
 

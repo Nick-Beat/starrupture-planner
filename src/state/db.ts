@@ -82,7 +82,7 @@ export interface Corporation {
     levels: CorporationLevel[];
 }
 
-export type TabType = 'items' | 'recipes' | 'corporations' | 'planner' | 'mybases';
+export type TabType = 'items' | 'recipes' | 'corporations' | 'planner' | 'mybases' | 'storage';
 
 export interface Tab {
     id: TabType;
