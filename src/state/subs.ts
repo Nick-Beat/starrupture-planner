@@ -971,7 +971,7 @@ regSub(SUB_IDS.BASES_STORAGE_AGREGATED,
 
             storageBuildings.forEach((baseBuilding: BaseBuilding) => {
                 const building = buildingsById[baseBuilding.buildingTypeId];
-                if (building) {
+                if (building && baseBuilding.sectionType === 'outputs') {
                     result.push({
                         baseId: base.id,
                         baseName: base.name,

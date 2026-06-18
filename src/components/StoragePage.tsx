@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { dispatch, useSubscription } from '@flexsurfer/reflex';
 import { SUB_IDS } from '../state/sub-ids';
 import { EVENT_IDS } from '../state/event-ids';
-import type { BaseStorageBuildingWithBase } from './types';
+import type { BaseStorageBuildingWithBase } from './mybases/types';
 import { SelectItemModal } from './mybases/modals';
-import type { Base } from '../../state/db';
+import type { Base } from '../state/db';
 
 interface StorageSectionProps {
   baseName: string;
