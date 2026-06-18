@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { dispatch, useSubscription } from '@flexsurfer/reflex';
 import { SUB_IDS } from '../state/sub-ids';
 import { EVENT_IDS } from '../state/event-ids';
-import type { BaseStorageBuildingWithBase } from './mybases/types';
+import type { BaseStorageBuildingWithBase } from './types';
 import { SelectItemModal } from './mybases/modals';
-import type { Base } from '../state/db';
+import type { Base } from '../../state/db';
 
 interface StorageSectionProps {
   baseName: string;
@@ -163,7 +163,6 @@ const StorageBuildingCard: React.FC<StorageBuildingCardProps> = ({ storage, onRe
               </div>
               {(storage.selectedItemId) ? (
                 <button
-                  onClick={() => onOpenSelectModal(storage)}
                   className="flex-shrink-0 w-20 min-h-20 border-2 border-dashed border-base-300 hover:border-primary rounded-lg flex flex-col items-center justify-center gap-1 transition-colors bg-base-100 px-1"
                 >
                   {itemImage && (
@@ -180,16 +179,15 @@ const StorageBuildingCard: React.FC<StorageBuildingCardProps> = ({ storage, onRe
                     </>
                   )}
                   <span className="text-xs text-center">{selectedItem?.name || 'Select'}</span>
-                  {storage.storedOutput !== undefined && storage.storedOutput !== null && (
+                  {storage.storedOutput !== undefined && storage.storedOutput !== null && storage.building.type === 'storage' && (
                     <span className="text-xs text-center">Out: {storage.storedOutput}</span>
                   )}
-                  {storage.storedInput !== undefined && storage.storedInput !== null && (
+                  {storage.storedInput !== undefined && storage.storedInput !== null && storage.building.type === 'transport' && (
                     <span className="text-xs text-center">In: {storage.storedInput}</span>
                   )}
                 </button>
               ) : (
                 <button
-                  onClick={() => onOpenSelectModal(storage)}
                   className="flex-shrink-0 w-20 min-h-20 border-2 border-dashed border-base-300 hover:border-primary rounded-lg flex flex-col items-center justify-center gap-1 transition-colors bg-base-100 px-1"
                 >
                   <svg
@@ -207,24 +205,6 @@ const StorageBuildingCard: React.FC<StorageBuildingCardProps> = ({ storage, onRe
                   </svg>
                 </button>
               )}
-            </div>
-
-            <div className="flex-1 flex flex-row">
-              <div className="text-xs flex flex-row gap-1 items-center ml-5" >
-                <span>⚡</span>
-                <span>{totalPower}</span>
-                <span>🔥</span>
-                <span>{totalHeat}</span>
-              </div>
-
-              <div className="flex-1 flex items-end justify-end mt-auto">
-                <button
-                  className="btn btn-xs btn-error btn-outline"
-                  onClick={() => onRemove(storage.baseBuildingId)}
-                >
-                  Remove
-                </button>
-              </div>
             </div>
           </div>
         </div>
