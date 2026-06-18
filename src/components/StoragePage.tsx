@@ -233,7 +233,7 @@ const StorageBuildingCard: React.FC<StorageBuildingCardProps> = ({ storage, onRe
   );
 };
 
-const STORAGE_UPDATE_INTERVAL_MS = 10 * 1000; // Update building data every minute
+const STORAGE_UPDATE_INTERVAL_MS = 60 * 1000; // Update building data every minute
 
 const StoragePage: React.FC = () => {
   const bases = useSubscription<Base[]>([SUB_IDS.BASES_LIST]);
